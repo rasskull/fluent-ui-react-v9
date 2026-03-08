@@ -190,8 +190,8 @@ export function ExampleComponents() {
           <Option>Option 3</Option>
         </Combobox>
         <Select>
-          <Option>Option A</Option>
-          <Option>Option B</Option>
+          <option>Option A</option>
+          <option>Option B</option>
         </Select>
       </div>
 
