@@ -12,9 +12,13 @@ import type { FigmaFile } from './services/figmaAPI'
 import './App.css'
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState<TabValue>('auth')
+  // look for ?project=<id> in URL
+  const params = new URLSearchParams(window.location.search)
+  const initialProject = params.get('project') || ''
+
+  const [selectedTab, setSelectedTab] = useState<TabValue>(initialProject ? 'files' : 'auth')
   const [isAuthenticated, setIsAuthenticated] = useState(!!figmaAPI.getToken())
-  const [selectedProjectId, setSelectedProjectId] = useState<string>('')
+  const [selectedProjectId, setSelectedProjectId] = useState<string>(initialProject)
   const [selectedFile, setSelectedFile] = useState<FigmaFile | null>(null)
 
   const handleAuthenticated = () => {
