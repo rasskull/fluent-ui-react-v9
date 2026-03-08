@@ -27,17 +27,22 @@ This app provides direct integration with Figma's API to:
 1. **Get a Figma Access Token:**
    - Go to [Figma Account Settings](https://www.figma.com/settings)
    - Scroll to "Personal access tokens"
-   - Click "Create a new personal access token"
+   - Click "Create a new personal access token" and grant **files:read** and **teams:read** scopes
    - Copy the token (keep it secure!)
 
 2. **Authenticate in the App:**
-   - Start the development server
+   - Start the development server (`npm run dev`)
    - Go to the "Authentication" tab
-   - Enter your Figma access token
-   - Click "Authenticate"
+   - Enter your Figma access token and click **Authenticate**
 
-3. **Explore Your Files:**
-   - Switch to the "Files" tab to browse your Figma projects
+3. **Select or Enter a Project:**
+   - After authentication, switch to the "Files" tab
+   - The app will try to auto-detect your projects
+   - If you see an error (e.g. "Unable to determine team ID"), use the manual project ID input that appears
+   - To find a project ID in Figma, open the project in a browser and copy the alphanumeric identifier from the URL (after `/projects/`)
+
+4. **Browse and Use Files:**
+   - Once a project is selected, the file list will load
    - Click on any file to view details and extract tokens
    - Use the "Design Tokens" tab to export colors and styles
    - Create prototypes in the "Prototypes" tab

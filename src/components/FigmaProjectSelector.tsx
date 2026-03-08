@@ -145,6 +145,29 @@ export function FigmaProjectSelector({ onProjectSelect }: FigmaProjectSelectorPr
         <div className={styles.container}>
           <Text style={{ color: '#c42b1c' }}>Error: {error}</Text>
           <Button onClick={loadProjects}>Retry</Button>
+          <Text>
+            If you already know your Figma project ID, you can enter it below instead of
+            using the automatic lookup.
+          </Text>
+          <div className={styles.selectGroup}>
+            <Text>Manual project ID:</Text>
+            <input
+              type="text"
+              placeholder="Enter project ID"
+              value={selectedProjectId}
+              onChange={(e) => {
+                const val = e.target.value
+                setSelectedProjectId(val)
+                onProjectSelect?.(val)
+              }}
+              style={{
+                padding: '0.5rem',
+                borderRadius: '4px',
+                border: '1px solid #ccc',
+                fontSize: '1rem'
+              }}
+            />
+          </div>
         </div>
       </Card>
     )
