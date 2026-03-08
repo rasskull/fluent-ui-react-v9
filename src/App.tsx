@@ -3,6 +3,7 @@ import { Card, FluentProvider, teamsLightTheme, Text, Title1, TabList, Tab } fro
 import type { TabValue } from '@fluentui/react-components'
 import { ArrowRight24Regular, Document24Regular, Color24Regular, Play24Regular } from '@fluentui/react-icons'
 import { FigmaAuth } from './components/FigmaAuth'
+import { FigmaProjectSelector } from './components/FigmaProjectSelector'
 import { FigmaFiles } from './components/FigmaFiles'
 import { FigmaTokens } from './components/FigmaTokens'
 import { FigmaPrototypes } from './components/FigmaPrototypes'
@@ -13,6 +14,7 @@ import './App.css'
 function App() {
   const [selectedTab, setSelectedTab] = useState<TabValue>('auth')
   const [isAuthenticated, setIsAuthenticated] = useState(!!figmaAPI.getToken())
+  const [selectedProjectId, setSelectedProjectId] = useState<string>('')
   const [selectedFile, setSelectedFile] = useState<FigmaFile | null>(null)
 
   const handleAuthenticated = () => {
@@ -56,8 +58,12 @@ function App() {
                 <FigmaAuth onAuthenticated={handleAuthenticated} />
               )}
 
-              {selectedTab === 'files' && (
-                <FigmaFiles onFileSelect={handleFileSelect} />
+              {isAuthenticated && selectedTab !== 'auth' && !selectedProjectId && (
+                <FigmaProjectSelector onProjectSelect={setSelectedProjectId} />
+              )}
+
+              {selectedTab === 'files' && selectedProjectId && (
+                <FigmaFiles projectId={selectedProjectId} onFileSelect={handleFileSelect} />
               )}
 
               {selectedTab === 'tokens' && selectedFile && (
