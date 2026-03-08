@@ -30,6 +30,7 @@ function App() {
       <div className="app-container">
         <Card>
           <div className="card-content">
+            <Title1>🎉 Hello World!</Title1>
             <Title1>Fluent UI + Figma Integration</Title1>
             <Text>
               Connect to Figma, access your design files, extract design tokens, and create prototypes.
