@@ -57,6 +57,7 @@ import {
   ToolbarButton,
   Tooltip,
 } from '@fluentui/react-components'
+import { tokens } from '@fluentui/tokens'
 import {
   Add24Regular,
   Alert24Regular,
@@ -339,6 +340,215 @@ export function ExampleComponents() {
         <ToolbarButton icon={<Edit24Regular />} />
         <ToolbarButton icon={<Share24Regular />} />
       </Toolbar>
+
+      <Divider />
+      <Text weight="semibold" size={400}>
+        Fluent UI Design Tokens
+      </Text>
+
+      <Divider />
+      <Text weight="semibold" size={300}>
+        Color Tokens
+      </Text>
+      <div className={styles.row}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <div
+            style={{
+              width: '32px',
+              height: '32px',
+              backgroundColor: tokens.colorBrandBackground,
+              border: `1px solid ${tokens.colorNeutralStroke1}`,
+              borderRadius: '4px'
+            }}
+          />
+          <Text size={200}>colorBrandBackground</Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.colorBrandBackground}</Text>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <div
+            style={{
+              width: '32px',
+              height: '32px',
+              backgroundColor: tokens.colorNeutralBackground1,
+              border: `1px solid ${tokens.colorNeutralStroke1}`,
+              borderRadius: '4px'
+            }}
+          />
+          <Text size={200}>colorNeutralBackground1</Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.colorNeutralBackground1}</Text>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <div
+            style={{
+              width: '32px',
+              height: '32px',
+              backgroundColor: tokens.colorStatusSuccessBackground1,
+              border: `1px solid ${tokens.colorNeutralStroke1}`,
+              borderRadius: '4px'
+            }}
+          />
+          <Text size={200}>colorStatusSuccessBackground1</Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.colorStatusSuccessBackground1}</Text>
+        </div>
+      </div>
+
+      <Divider />
+      <Text weight="semibold" size={300}>
+        Spacing Tokens
+      </Text>
+      <div className={styles.row}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' }}>
+          <div
+            style={{
+              width: tokens.spacingHorizontalS,
+              height: '20px',
+              backgroundColor: tokens.colorBrandBackground,
+              borderRadius: '2px'
+            }}
+          />
+          <Text size={200}>spacingHorizontalS</Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.spacingHorizontalS}</Text>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' }}>
+          <div
+            style={{
+              width: tokens.spacingHorizontalM,
+              height: '20px',
+              backgroundColor: tokens.colorBrandBackground,
+              borderRadius: '2px'
+            }}
+          />
+          <Text size={200}>spacingHorizontalM</Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.spacingHorizontalM}</Text>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' }}>
+          <div
+            style={{
+              width: tokens.spacingHorizontalL,
+              height: '20px',
+              backgroundColor: tokens.colorBrandBackground,
+              borderRadius: '2px'
+            }}
+          />
+          <Text size={200}>spacingHorizontalL</Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.spacingHorizontalL}</Text>
+        </div>
+      </div>
+
+      <Divider />
+      <Text weight="semibold" size={300}>
+        Typography Tokens
+      </Text>
+      <div className={styles.row} style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+        <div style={{ marginBottom: '0.5rem' }}>
+          <Text size={200}>fontFamilyBase: </Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.fontFamilyBase}</Text>
+        </div>
+        <div style={{ marginBottom: '0.5rem' }}>
+          <Text size={200}>fontSizeBase300: </Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.fontSizeBase300}</Text>
+        </div>
+        <div style={{ marginBottom: '0.5rem' }}>
+          <Text size={200}>fontWeightRegular: </Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.fontWeightRegular}</Text>
+        </div>
+        <div style={{ marginBottom: '0.5rem' }}>
+          <Text size={200}>lineHeightBase300: </Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.lineHeightBase300}</Text>
+        </div>
+      </div>
+
+      <Divider />
+      <Text weight="semibold" size={300}>
+        Border Radius Tokens
+      </Text>
+      <div className={styles.row}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' }}>
+          <div
+            style={{
+              width: '40px',
+              height: '40px',
+              backgroundColor: tokens.colorBrandBackground,
+              borderRadius: tokens.borderRadiusSmall,
+              border: `1px solid ${tokens.colorNeutralStroke1}`
+            }}
+          />
+          <Text size={200}>borderRadiusSmall</Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.borderRadiusSmall}</Text>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' }}>
+          <div
+            style={{
+              width: '40px',
+              height: '40px',
+              backgroundColor: tokens.colorBrandBackground,
+              borderRadius: tokens.borderRadiusMedium,
+              border: `1px solid ${tokens.colorNeutralStroke1}`
+            }}
+          />
+          <Text size={200}>borderRadiusMedium</Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.borderRadiusMedium}</Text>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' }}>
+          <div
+            style={{
+              width: '40px',
+              height: '40px',
+              backgroundColor: tokens.colorBrandBackground,
+              borderRadius: tokens.borderRadiusLarge,
+              border: `1px solid ${tokens.colorNeutralStroke1}`
+            }}
+          />
+          <Text size={200}>borderRadiusLarge</Text>
+          <Text size={200} style={{ fontFamily: 'monospace' }}>{tokens.borderRadiusLarge}</Text>
+        </div>
+      </div>
+
+      <Divider />
+      <Text weight="semibold" size={300}>
+        Shadow Tokens
+      </Text>
+      <div className={styles.row}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' }}>
+          <div
+            style={{
+              width: '60px',
+              height: '60px',
+              backgroundColor: tokens.colorNeutralBackground1,
+              borderRadius: tokens.borderRadiusMedium,
+              boxShadow: tokens.shadow4,
+              border: `1px solid ${tokens.colorNeutralStroke1}`
+            }}
+          />
+          <Text size={200}>shadow4</Text>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' }}>
+          <div
+            style={{
+              width: '60px',
+              height: '60px',
+              backgroundColor: tokens.colorNeutralBackground1,
+              borderRadius: tokens.borderRadiusMedium,
+              boxShadow: tokens.shadow8,
+              border: `1px solid ${tokens.colorNeutralStroke1}`
+            }}
+          />
+          <Text size={200}>shadow8</Text>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' }}>
+          <div
+            style={{
+              width: '60px',
+              height: '60px',
+              backgroundColor: tokens.colorNeutralBackground1,
+              borderRadius: tokens.borderRadiusMedium,
+              boxShadow: tokens.shadow16,
+              border: `1px solid ${tokens.colorNeutralStroke1}`
+            }}
+          />
+          <Text size={200}>shadow16</Text>
+        </div>
+      </div>
     </div>
   )
 }
