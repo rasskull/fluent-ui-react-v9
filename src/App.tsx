@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Card, FluentProvider, webLightTheme, Text, Title1, TabList, Tab } from '@fluentui/react-components'
 import type { TabValue } from '@fluentui/react-components'
-import { ArrowRight24Regular, Document24Regular, Color24Regular, Play24Regular, Add24Regular } from '@fluentui/react-icons'
+import { ArrowRight24Regular, Document24Regular, Color24Regular, Play24Regular, Add24Regular, DarkTheme24Regular } from '@fluentui/react-icons'
 import { FigmaAuth } from './components/FigmaAuth'
 import { FigmaProjectSelector } from './components/FigmaProjectSelector'
 import { FigmaFiles } from './components/FigmaFiles'
@@ -12,6 +12,7 @@ import type { FigmaFile } from './services/figmaAPI'
 
 // examples page
 import { ExampleComponents } from './examples/ExampleComponents'
+import { DarkExampleComponents } from './examples/DarkExampleComponents'
 import './App.css'
 
 function App() {
@@ -61,6 +62,9 @@ function App() {
               <Tab value="examples" icon={<Add24Regular />}>
                 Examples
               </Tab>
+              <Tab value="dark-examples" icon={<DarkTheme24Regular />}>
+                Dark Examples
+              </Tab>
             </TabList>
 
             <div style={{ marginTop: '1rem' }}>
@@ -86,6 +90,10 @@ function App() {
 
               {selectedTab === 'examples' && (
                 <ExampleComponents />
+              )}
+
+              {selectedTab === 'dark-examples' && (
+                <DarkExampleComponents />
               )}
             </div>
 
