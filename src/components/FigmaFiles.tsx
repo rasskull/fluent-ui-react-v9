@@ -65,8 +65,17 @@ export function FigmaFiles({ projectId, onFileSelect }: FigmaFilesProps) {
     try {
       const response = await figmaAPI.getProjectFiles(projectId)
       setFiles(response.files || [])
+      if ((!response.files || response.files.length === 0) && response.status === 404) {
+        // some versions return status on body
+        throw new Error('Project not found')
+      }
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to load files')
+      console.error('Error loading project files:', err)
+      if (err.response?.status === 404) {
+        setError('Project unavailable or inaccessible. Please verify the project ID and that your token has access.')
+      } else {
+        setError(err.response?.data?.message || err.message || 'Failed to load files')
+      }
     } finally {
       setLoading(false)
     }
