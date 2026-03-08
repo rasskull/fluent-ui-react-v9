@@ -174,9 +174,16 @@ export function ExampleComponents() {
       <Card>
         <CardHeader header={<Text weight="semibold">Card Title</Text>} />
         <CardPreview>
-          <div style={{ height: '100px', background: '#f3f2f1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Card Preview</Text>
-          </div>
+          <img
+            src="https://picsum.photos/300/200?random=1"
+            alt="Sample card image"
+            style={{
+              width: '100%',
+              height: '200px',
+              objectFit: 'cover',
+              borderRadius: '4px'
+            }}
+          />
         </CardPreview>
       </Card>
 
