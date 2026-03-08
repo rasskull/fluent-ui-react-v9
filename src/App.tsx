@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Card, FluentProvider, webLightTheme, Text, Title1, TabList, Tab } from '@fluentui/react-components'
 import type { TabValue } from '@fluentui/react-components'
-import { ArrowRight24Regular, Document24Regular, Color24Regular, Play24Regular } from '@fluentui/react-icons'
+import { ArrowRight24Regular, Document24Regular, Color24Regular, Play24Regular, Add24Regular } from '@fluentui/react-icons'
 import { FigmaAuth } from './components/FigmaAuth'
 import { FigmaProjectSelector } from './components/FigmaProjectSelector'
 import { FigmaFiles } from './components/FigmaFiles'
@@ -9,6 +9,9 @@ import { FigmaTokens } from './components/FigmaTokens'
 import { FigmaPrototypes } from './components/FigmaPrototypes'
 import { figmaAPI } from './services/figmaAPI'
 import type { FigmaFile } from './services/figmaAPI'
+
+// examples page
+import { ExampleComponents } from './examples/ExampleComponents'
 import './App.css'
 
 function App() {
@@ -55,6 +58,9 @@ function App() {
               <Tab value="prototypes" icon={<Play24Regular />} disabled={!isAuthenticated}>
                 Prototypes
               </Tab>
+              <Tab value="examples" icon={<Add24Regular />}>
+                Examples
+              </Tab>
             </TabList>
 
             <div style={{ marginTop: '1rem' }}>
@@ -76,6 +82,10 @@ function App() {
 
               {selectedTab === 'prototypes' && (
                 <FigmaPrototypes fileKey={selectedFile?.key} />
+              )}
+
+              {selectedTab === 'examples' && (
+                <ExampleComponents />
               )}
             </div>
 
