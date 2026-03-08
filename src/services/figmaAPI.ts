@@ -145,6 +145,21 @@ class FigmaAPI {
 
     return components
   }
+  // Helper method to list files accessible to the user
+  async getTeamFiles(teamId: string) {
+    const response = await axios.get(`${this.baseURL}/teams/${teamId}/files`, {
+      headers: this.getHeaders()
+    })
+    return response.data
+  }
+
+  // Get all teams accessible to the user
+  async getTeams() {
+    const response = await axios.get(`${this.baseURL}/teams`, {
+      headers: this.getHeaders()
+    })
+    return response.data
+  }
 }
 
 export const figmaAPI = new FigmaAPI()

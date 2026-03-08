@@ -46,25 +46,77 @@ export function FigmaProjectSelector({ onProjectSelect }: FigmaProjectSelectorPr
     setError(null)
 
     try {
+      // First, try to get the user profile for team info
       const userProfile = await figmaAPI.getUserProfile()
-      // Get the first team's projects (users typically have a personal team)
+      console.log('User Profile Response:', userProfile)
+
+      let teamId = null
+
+      // Method 1: Direct teams property
       if (userProfile.teams && userProfile.teams.length > 0) {
-        const teamId = userProfile.teams[0].id
+        teamId = userProfile.teams[0].id
+      }
+      // Method 2: User ID based team (personal team format)
+      else if (userProfile.id) {
+        teamId = userProfile.id
+      }
+      // Method 3: Fallback - check for team_id field
+      else if (userProfile.team_id) {
+        teamId = userProfile.team_id
+      }
+
+      // If we still don't have a team ID, try getting teams directly
+      if (!teamId) {
+        console.log('No team ID found in user profile, trying to fetch teams...')
+        try {
+          const teamsResponse = await figmaAPI.getTeams()
+          console.log('Teams Response:', teamsResponse)
+          if (teamsResponse.teams && teamsResponse.teams.length > 0) {
+            teamId = teamsResponse.teams[0].id
+          }
+        } catch (teamsErr) {
+          console.warn('Failed to fetch teams via /teams endpoint:', teamsErr)
+        }
+      }
+
+      if (!teamId) {
+        console.warn('Available response fields:', Object.keys(userProfile))
+        setError('Unable to determine team ID. This may indicate an API permission issue. Check the console for diagnostic information.')
+        return
+      }
+
+      // Now try to load projects
+      console.log('Loading projects for team:', teamId)
+      try {
         const projectsResponse = await figmaAPI.getTeamProjects(teamId)
-        setProjects(projectsResponse.projects || [])
-        
-        // Auto-select first project
+        console.log('Projects Response:', projectsResponse)
+
         if (projectsResponse.projects && projectsResponse.projects.length > 0) {
+          setProjects(projectsResponse.projects)
           const firstProjectId = projectsResponse.projects[0].id
           setSelectedProjectId(firstProjectId)
           onProjectSelect?.(firstProjectId)
+          return
         }
-      } else {
-        setError('No teams found in your Figma account')
+      } catch (projectsErr) {
+        console.warn('Failed to fetch projects via /projects endpoint:', projectsErr)
+      }
+
+      // Fallback: Try getting team files directly
+      console.log('Trying to get team files directly...')
+      try {
+        const filesResponse = await figmaAPI.getTeamFiles(teamId)
+        console.log('Team Files Response:', filesResponse)
+        setError('Loaded files directly. (Note: Project structure not available)')
+      } catch (filesErr) {
+        console.warn('Failed to fetch team files:', filesErr)
+        setError('No projects found and unable to load team files. Verify your Figma API key has proper permissions.')
       }
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to load projects')
-      console.error('Project loading error:', err)
+      console.error('Full error object:', err)
+      console.error('Error response:', err.response?.data)
+      console.error('Error message:', err.message)
+      setError(err.response?.data?.message || err.message || 'Failed to load projects')
     } finally {
       setLoading(false)
     }
