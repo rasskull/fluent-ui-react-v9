@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Card, FluentProvider, teamsLightTheme, Text, Title1, TabList, Tab } from '@fluentui/react-components'
+import { Card, FluentProvider, webLightTheme, Text, Title1, TabList, Tab } from '@fluentui/react-components'
 import type { TabValue } from '@fluentui/react-components'
 import { ArrowRight24Regular, Document24Regular, Color24Regular, Play24Regular } from '@fluentui/react-icons'
 import { FigmaAuth } from './components/FigmaAuth'
@@ -32,7 +32,7 @@ function App() {
   }
 
   return (
-    <FluentProvider theme={teamsLightTheme}>
+    <FluentProvider theme={webLightTheme}>
       <div className="app-container">
         <Card>
           <div className="card-content">
